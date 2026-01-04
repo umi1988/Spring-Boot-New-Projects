@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: Spring-Boot-Feign-Client-Course-Service-Example
+
+server:
+  port: 9191

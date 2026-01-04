@@ -1,0 +1,9 @@
+application:
+  services:
+    course:
+      url: http://localhost:9191/api/courses
+#    name: Spring-Boot-Feign-Client-Student-Service-Example
+
+
+server:
+  port: 9192
