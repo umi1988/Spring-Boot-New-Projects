@@ -1,0 +1,90 @@
+mysql> select * from parking_entry;
++----+---------------+---------------------+----------+--------+
+| id | vehicleNumber | entryTime           | exitTime | active |
++----+---------------+---------------------+----------+--------+
+|  1 | KA01R148      | 2026-01-10 21:27:50 | NULL     |      1 |
+|  2 | MP36MM1515    | 2026-01-10 21:28:18 | NULL     |      1 |
++----+---------------+---------------------+----------+--------+
+2 rows in set (0.003 sec)
+
+mysql> select * from slot;
++----+----------+-----------+---------------+
+| id | slotCode | available | vehicleNumber |
++----+----------+-----------+---------------+
+|  1 | A1       |         0 | KA01R148      |
+|  2 | A2       |         0 | MP36MM1515    |
+|  3 | A3       |         1 | NULL          |
++----+----------+-----------+---------------+
+3 rows in set (0.001 sec)
+
+mysql> select * from billing_record;
+Empty set (0.001 sec)
+
+
+Hibernate: insert into parking_entry (active,entryTime,exitTime,vehicleNumber) values (?,?,?,?)
+Hibernate: select s1_0.id,s1_0.available,s1_0.slotCode,s1_0.vehicleNumber from slot s1_0 where s1_0.available=true limit ?
+Hibernate: update slot set available=?,slotCode=?,vehicleNumber=? where id=?
+🅿️ Allocated Slot A1 to vehicle KA01R148
+📩 Notification: Vehicle KA01R148 entered at 2026-01-10T21:27:49.694667. Welcome!
+Hibernate: insert into parking_entry (active,entryTime,exitTime,vehicleNumber) values (?,?,?,?)
+Hibernate: select s1_0.id,s1_0.available,s1_0.slotCode,s1_0.vehicleNumber from slot s1_0 where s1_0.available=true limit ?
+Hibernate: update slot set available=?,slotCode=?,vehicleNumber=? where id=?
+🅿️ Allocated Slot A2 to vehicle MP36MM1515
+📩 Notification: Vehicle MP36MM1515 entered at 2026-01-10T21:28:18.325572. Welcome!
+
+
+
+mysql> 
+mysql> 
+mysql> select * from parking_entry;
++----+---------------+---------------------+---------------------+--------+
+| id | vehicleNumber | entryTime           | exitTime            | active |
++----+---------------+---------------------+---------------------+--------+
+|  1 | KA01R148      | 2026-01-10 21:27:50 | NULL                |      1 |
+|  2 | MP36MM1515    | 2026-01-10 21:28:18 | 2026-01-10 21:30:11 |      0 |
++----+---------------+---------------------+---------------------+--------+
+2 rows in set (0.001 sec)
+
+mysql> select * from slot;
++----+----------+-----------+---------------+
+| id | slotCode | available | vehicleNumber |
++----+----------+-----------+---------------+
+|  1 | A1       |         0 | KA01R148      |
+|  2 | A2       |         1 | NULL          |
+|  3 | A3       |         1 | NULL          |
++----+----------+-----------+---------------+
+3 rows in set (0.001 sec)
+
+mysql> select * from billing_record;
++----+---------------+--------+---------------------+
+| id | vehicleNumber | amount | billingTime         |
++----+---------------+--------+---------------------+
+|  1 | MP36MM1515    |     20 | 2026-01-10 21:30:11 |
++----+---------------+--------+---------------------+
+1 row in set (0.001 sec)
+
+mysql> 
+
+
+
+Hibernate: select pe1_0.id,pe1_0.active,pe1_0.entryTime,pe1_0.exitTime,pe1_0.vehicleNumber from parking_entry pe1_0 where pe1_0.vehicleNumber=? and pe1_0.active=true
+Hibernate: update parking_entry set active=?,entryTime=?,exitTime=?,vehicleNumber=? where id=?
+Hibernate: select s1_0.id,s1_0.available,s1_0.slotCode,s1_0.vehicleNumber from slot s1_0 where s1_0.vehicleNumber=?
+Hibernate: update slot set available=?,slotCode=?,vehicleNumber=? where id=?
+🅿️ Freed Slot A2 from vehicle MP36MM1515
+Hibernate: insert into billing_record (amount,billingTime,vehicleNumber) values (?,?,?)
+✅ Billed ₹20.0 for vehicle MP36MM1515 from 2026-01-10T21:28:18 to 2026-01-10T21:30:10.701785
+📩 Notification: Vehicle MP36MM1515 has exited. Thank you for visiting!
+
+
+
+
+
+-------- with @order annotation ... priority changes
+
+
+Hibernate: insert into parking_entry (active,entryTime,exitTime,vehicleNumber) values (?,?,?,?)
+📩 Notification: Vehicle TN0133436 entered at 2026-01-10T21:57:29.821103. Welcome!
+Hibernate: select s1_0.id,s1_0.available,s1_0.slotCode,s1_0.vehicleNumber from slot s1_0 where s1_0.available=true limit ?
+Hibernate: update slot set available=?,slotCode=?,vehicleNumber=? where id=?
+🅿️ Allocated Slot A1 to vehicle TN0133436
