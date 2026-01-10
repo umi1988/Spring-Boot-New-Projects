@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: Spring-Boot-Temporal-Example
+  main:
+    allow-circular-references: true
+
+server:
+  port: 9191
