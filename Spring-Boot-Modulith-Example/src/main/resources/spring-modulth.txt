@@ -34,8 +34,8 @@ Hibernate: update slot set available=?,slotCode=?,vehicleNumber=? where id=?
 
 
 
-mysql> 
-mysql> 
+mysql>
+mysql>
 mysql> select * from parking_entry;
 +----+---------------+---------------------+---------------------+--------+
 | id | vehicleNumber | entryTime           | exitTime            | active |
@@ -63,7 +63,7 @@ mysql> select * from billing_record;
 +----+---------------+--------+---------------------+
 1 row in set (0.001 sec)
 
-mysql> 
+mysql>
 
 
 
@@ -88,3 +88,10 @@ Hibernate: insert into parking_entry (active,entryTime,exitTime,vehicleNumber) v
 Hibernate: select s1_0.id,s1_0.available,s1_0.slotCode,s1_0.vehicleNumber from slot s1_0 where s1_0.available=true limit ?
 Hibernate: update slot set available=?,slotCode=?,vehicleNumber=? where id=?
 🅿️ Allocated Slot A1 to vehicle TN0133436
+
+
+
+---------
+
+In target folder it will generate docs file inside spring-modulith-docs, we have all-docs.html
+I m attaching this file in resource folder
